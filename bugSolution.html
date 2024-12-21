@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug Solution</title>
+</head>
+<body>
+  <p>This is a paragraph.</p>
+  <div id="myDiv"></div>
+  <script>
+    //Check if the element exists before modifying its innerHTML
+    const myDiv = document.getElementById("myDiv");
+    const nonExistentElement = document.getElementById("nonExistentElement");
+
+    if (myDiv) {
+        myDiv.innerHTML = "<p>This is a paragraph inside a div.</p>";
+    } else {
+        console.error("Element with ID 'myDiv' not found.");
+    }
+
+    try {
+        if (nonExistentElement) {
+          nonExistentElement.innerHTML = "This should not cause an error!";
+        } else {
+          console.warn("Element with ID 'nonExistentElement' not found. No error thrown.");
+        }
+    } catch (error) {
+        console.error("Error accessing non-existent element: ", error);
+    }
+  </script>
+</body>
+</html>
